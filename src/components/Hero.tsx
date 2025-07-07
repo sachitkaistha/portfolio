@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Download, Github, Linkedin, Mail, ChevronDown, Mail as MailIcon } from 'lucide-react';
-import profileImg from '../assets/1713446390783.jpeg';
+import AnimatedAvatar from './AnimatedAvatar';
+import HireButton from './HireButton';
 
 const taglines = [
   'Building bridges between code and cloud.',
@@ -147,7 +148,7 @@ const Hero: React.FC = () => {
             </div>
             <div className="p-1 rounded-2xl animated-border-glass bg-white/30 dark:bg-slate-800/30 shadow-xl backdrop-blur-md border border-white/30 dark:border-slate-700/30">
               <p className="text-lg text-slate-600 dark:text-slate-300 max-w-lg px-6 py-4">
-                Passionate DevOps Engineer with a strong background in PHP development. I transform complex infrastructure challenges into elegant, automated solutions.
+                Building scalable systems & automating the future. Passionate DevOps Engineer with a strong background in PHP development.
               </p>
             </div>
             <p className="italic text-blue-500 dark:text-blue-300 text-base min-h-[2.5rem]">
@@ -155,6 +156,7 @@ const Hero: React.FC = () => {
               <span className="animate-pulse">|</span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
+              <HireButton />
               <button onClick={handleResumeClick} className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
                 <span className="flex items-center gap-2">
                   <Download className="w-5 h-5" />
@@ -178,23 +180,9 @@ const Hero: React.FC = () => {
               </div>
             </div>
           </div>
-          {/* Profile Image with Aurora/Glow and Parallax */}
+          {/* Animated Avatar */}
           <div className="flex justify-center relative z-10">
-            <div className="relative group" ref={profileRef} style={{ perspective: '800px' }}>
-              {/* Aurora/Glow */}
-              <div className="absolute -inset-8 z-0 aurora-glow" />
-              <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 p-1 animate-pulse-slow shadow-2xl relative z-10">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-700 dark:to-slate-800 flex items-center justify-center">
-                  <div className="w-60 h-60 rounded-full overflow-hidden shadow-xl border-4 border-white dark:border-slate-800 transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2">
-                    <img src={profileImg} alt="Profile" className="w-full h-full object-cover rounded-full" />
-                  </div>
-                </div>
-              </div>
-              {/* Animated Accent Shapes */}
-              <span className="absolute -top-6 -right-6 w-12 h-12 bg-blue-400/60 rounded-full blur-xl animate-float"></span>
-              <span className="absolute -bottom-8 -left-8 w-16 h-16 bg-purple-400/40 rounded-full blur-2xl animate-float-delayed"></span>
-              <span className="absolute top-1/2 -left-10 w-8 h-8 bg-pink-400/50 rounded-full blur-lg animate-float-slow"></span>
-            </div>
+            <AnimatedAvatar />
           </div>
         </div>
         {/* GitHub Stats Card */}

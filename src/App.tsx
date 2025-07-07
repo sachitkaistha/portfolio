@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Moon, Sun, Download, Github, Linkedin, Mail, ExternalLink, ChevronDown } from 'lucide-react';
 import Hero from './components/Hero';
 import About from './components/About';
-import Skills from './components/Skills';
+import InteractiveSkills from './components/InteractiveSkills';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Certifications from './components/Certifications';
-import Projects from './components/Projects';
+import ProjectShowcase from './components/ProjectShowcase';
 import Contact from './components/Contact';
-import ParticleBackground from './components/ParticleBackground';
+import ThreeBackground from './components/ThreeBackground';
 import FloatingChat from './components/FloatingChat';
+import TerminalLoader from './components/TerminalLoader';
 
 const themes = [
   { name: 'Blue', class: 'theme-blue' },
@@ -22,11 +23,18 @@ const themes = [
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
   const [theme, setTheme] = useState('dark');
   const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
-    setIsLoaded(true);
+    // Show loader for 3 seconds, then show main content
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+      setIsLoaded(true);
+    }, 100); // Quick load for demo, change to 3000 for full effect
+    
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -56,6 +64,10 @@ function App() {
     }
   };
 
+  if (showLoader) {
+    return <TerminalLoader onComplete={() => setShowLoader(false)} />;
+  }
+
   return (
     <div className={`${theme} ${darkMode ? 'dark' : ''} transition-colors duration-300`}>
       <div className="dark:bg-slate-900 bg-gray-50 min-h-screen relative overflow-x-hidden">
@@ -63,7 +75,7 @@ function App() {
         <div className="fixed top-0 left-0 w-full h-1 z-50">
           <div style={{ width: `${scroll}%` }} className="h-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-400 transition-all duration-200" />
         </div>
-        <ParticleBackground />
+        <ThreeBackground />
         {/* Theme Toggle */}
         <button
           onClick={toggleDarkMode}
@@ -103,11 +115,11 @@ function App() {
         <main className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <Hero />
           <About />
-          <Skills />
+          <InteractiveSkills />
           <Education />
           <Experience />
           <Certifications />
-          <Projects />
+          <ProjectShowcase />
           <Contact />
         </main>
 
